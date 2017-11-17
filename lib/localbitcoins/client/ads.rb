@@ -28,6 +28,16 @@ module LocalBitcoins
       }.merge(params)
       request(:post, "/api/ad/#{id}/", updated_params).data
     end
+    
+    # Update one of the token owner's ads price equation
+    #
+    # id             - id of the ad you want to update
+    # price_equation - equation to calculate price [string]
+    #
+    def update_ad_equation(id, params={})
+      old_ad = ad(id).data
+      request(:post, "/api/ad-equation/#{id}/", params).data
+    end
 
     # Create a new ad for the token owner
     #
